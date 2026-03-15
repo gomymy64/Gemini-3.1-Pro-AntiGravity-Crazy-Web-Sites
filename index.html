@@ -348,41 +348,67 @@ footer {
 
 .footer-links a:hover { color: var(--accent); }
 
-.cta-block {
-  text-align: center;
-  padding: 48px 24px;
-  margin: 40px auto;
-  max-width: 600px;
-  background: linear-gradient(135deg, #7b61ff18, #e63b2e18);
-  border: 1px solid #e63b2e40;
-  border-radius: var(--radius);
+@keyframes ctaGlow {
+  0%, 100% { box-shadow: 0 0 20px #7b61ff15, 0 0 60px #7b61ff08; border-color: var(--border2); }
+  50% { box-shadow: 0 0 30px #7b61ff25, 0 0 80px #7b61ff12; border-color: #7b61ff40; }
 }
-.cta-emoji { font-size: 40px; margin-bottom: 16px; }
+.cta-block {
+  position: relative;
+  max-width: 800px;
+  margin: 60px auto 40px;
+  padding: 40px 40px;
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  overflow: hidden;
+  animation: ctaGlow 3s ease-in-out infinite;
+}
 .cta-text {
   font-family: 'Unbounded', sans-serif;
-  font-size: 18px;
+  font-size: clamp(16px, 2.5vw, 22px);
   font-weight: 600;
   color: var(--text);
-  margin-bottom: 24px;
   line-height: 1.4;
+  flex: 1;
+}
+.cta-text span {
+  background: var(--gradient1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 .cta-btn {
-  display: inline-block;
-  padding: 14px 40px;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 40px;
+  background: var(--gradient1);
   color: #fff;
-  font-family: 'Space Mono', monospace;
+  font-family: 'Unbounded', sans-serif;
   font-size: 14px;
   font-weight: 700;
-  text-transform: uppercase;
   letter-spacing: 1px;
   text-decoration: none;
-  border-radius: 100px;
+  border-radius: var(--radius);
   transition: transform 0.2s, box-shadow 0.2s;
+  white-space: nowrap;
 }
 .cta-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px #e63b2e40;
+  box-shadow: 0 12px 40px #7b61ff50;
+}
+.cta-btn svg {
+  width: 16px; height: 16px;
+  fill: #fff;
+}
+@media (max-width: 600px) {
+  .cta-block { flex-direction: column; text-align: center; padding: 32px 24px; }
+  .cta-btn { width: 100%; justify-content: center; }
 }
 
 /* TOAST */
@@ -593,14 +619,13 @@ Execution Directive: «Не строй сайт — строй цифровой 
 </div>
 
 <div class="cta-block">
-  <div class="cta-emoji">🚀</div>
-  <div class="cta-text">Забирай пошаговый план по выходу на первые 100к в ИИ в 2026</div>
-  <a href="https://t.me/mastodont_aibot?start=agency" target="_blank" class="cta-btn">Забрать</a>
+  <div class="cta-text">Пошаговый план по выходу на первые <span>100к в ИИ</span> в 2026</div>
+  <a href="https://t.me/mastodont_aibot?start=agency" target="_blank" class="cta-btn"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg> ЗАБРАТЬ</a>
 </div>
 
 <footer>
   <div class="footer-brand">МАСТОДОНТ</div>
-  <div class="footer-tagline">AI и нейросети - просто, по делу, на русском</div>
+  <div class="footer-tagline">AI и нейросети - просто, по делу</div>
   <div class="footer-links">
     <a href="#" onclick="copyEl('videoName', null); return false;">YouTube</a>
   </div>
