@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Материалы к Уроку: Cinematic Landing Page | Мастодонт</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Unbounded:wght@300;400;600;800;900&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #06060a;
+  --bg2: #0c0c14;
+  --bg3: #121220;
+  --border: #1a1a2e;
+  --border2: #28284a;
+  --text: #eae8f2;
+  --text-dim: #9892b0;
+  --text-muted: #5a5478;
+  --accent: #7b61ff;
+  --accent-dim: #7b61ff1a;
+  --accent2: #e63b2e;
+  --gradient1: linear-gradient(135deg, #7b61ff, #e63b2e);
+  --gradient2: linear-gradient(135deg, #e63b2e, #c9a84c);
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Manrope', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 var(--accent-dim); }
+  50% { opacity: 0.6; box-shadow: 0 0 0 8px transparent; }
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  padding: 80px 24px 50px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  width: 1000px;
+  height: 1000px;
+  background: radial-gradient(circle, #7b61ff0d 0%, transparent 65%);
+  top: -450px;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 18px;
+  border: 1px solid var(--border2);
+  border-radius: 100px;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  animation: fadeUp 0.6s ease both;
+}
+
+.hero-badge .dot {
+  width: 7px; height: 7px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: pulse 2s ease infinite;
+}
+
+.hero h1 {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 900;
+  font-size: clamp(28px, 5vw, 56px);
+  line-height: 1.1;
+  letter-spacing: -1px;
+  margin-bottom: 14px;
+  animation: fadeUp 0.6s ease 0.1s both;
+}
+
+.hero h1 .grad {
+  background: var(--gradient1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-sub {
+  font-size: clamp(14px, 2vw, 17px);
+  color: var(--text-dim);
+  max-width: 580px;
+  margin: 0 auto 32px;
+  font-weight: 300;
+  animation: fadeUp 0.6s ease 0.15s both;
+}
+
+/* VIDEO CARD */
+.video-card {
+  max-width: 700px;
+  margin: 0 auto 40px;
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  animation: fadeUp 0.6s ease 0.2s both;
+}
+
+.video-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 1;
+  min-width: 0;
+}
+
+.video-icon {
+  width: 44px; height: 44px;
+  background: #ff000015;
+  border: 1px solid #ff000035;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 20px;
+}
+
+.video-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.video-title {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* COPY BUTTONS */
+.copy-sm {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #ff000010;
+  border: 1px solid #ff000040;
+  color: #ff5555;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  padding: 8px 16px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+
+.copy-sm:hover { background: #ff5555; color: var(--bg); }
+.copy-sm.copied { background: #06d6a0 !important; border-color: #06d6a0 !important; color: var(--bg) !important; }
+.copy-sm svg { width: 13px; height: 13px; fill: currentColor; }
+
+/* CONTENT */
+.content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+
+/* PROMPT SECTION */
+.prompt-section {
+  animation: fadeUp 0.6s ease 0.25s both;
+}
+
+.prompt-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.prompt-meta { display: flex; flex-direction: column; gap: 4px; }
+
+.prompt-number {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 800;
+  font-size: 24px;
+  background: var(--gradient1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.prompt-title {
+  font-size: 14px;
+  color: var(--text-dim);
+  font-weight: 400;
+  max-width: 500px;
+}
+
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--accent-dim);
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  font-family: 'Space Mono', monospace;
+  font-size: 14px;
+  padding: 14px 28px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.3s;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.copy-btn:hover {
+  background: var(--accent);
+  color: var(--bg);
+  box-shadow: 0 0 40px var(--accent-dim);
+}
+
+.copy-btn.copied {
+  background: #06d6a0;
+  border-color: #06d6a0;
+  color: var(--bg);
+}
+
+.copy-btn svg { width: 16px; height: 16px; fill: currentColor; }
+
+.prompt-box {
+  background: #08080e;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.prompt-box::before {
+  content: '';
+  position: sticky;
+  display: block;
+  top: -28px;
+  left: -28px;
+  right: -28px;
+  height: 2px;
+  background: var(--gradient1);
+  margin: -28px -28px 28px;
+  z-index: 1;
+}
+
+.prompt-box::-webkit-scrollbar { width: 4px; }
+.prompt-box::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+
+.prompt-text {
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  color: var(--text-dim);
+  line-height: 1.8;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 40px 24px;
+  text-align: center;
+}
+
+.footer-brand {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 900;
+  font-size: 18px;
+  letter-spacing: 4px;
+  background: var(--gradient1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+
+.footer-tagline {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.footer-links a {
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover { color: var(--accent); }
+
+/* TOAST */
+.toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--accent);
+  color: white;
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 10px 24px;
+  border-radius: 100px;
+  z-index: 10000;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 30px #7b61ff40;
+}
+
+.toast.show { transform: translateX(-50%) translateY(0); }
+
+@media (max-width: 600px) {
+  .hero { padding: 60px 20px 40px; }
+  .prompt-header { flex-direction: column; align-items: flex-start; }
+  .prompt-box { padding: 20px; max-height: 500px; }
+  .video-card { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast">Скопировано!</div>
+
+<section class="hero">
+  <div class="hero-badge">
+    <span class="dot"></span>
+    Скопируй и вставь в AntiGravity
+  </div>
+  <h1>Cinematic <span class="grad">Landing Page</span></h1>
+  <p class="hero-sub">Один промпт - один лендинг кинематографического качества. Скопируй и вставь в чат AntiGravity.</p>
+
+  <div class="video-card">
+    <div class="video-left">
+      <div class="video-icon">▶</div>
+      <div>
+        <div class="video-label">Ищи на YouTube</div>
+        <div class="video-title" id="videoName">Gemini 3.1 Pro + AntiGravity УНИЧТОЖАЮТ веб-дизайнеров (1 Промпт)</div>
+      </div>
+    </div>
+    <button class="copy-sm" onclick="copyEl('videoName', this)">
+      <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+      Скопировать
+    </button>
+  </div>
+</section>
+
+<div class="content">
+  <div class="prompt-section">
+    <div class="prompt-header">
+      <div class="prompt-meta">
+        <div class="prompt-number">Промпт - вставь в AntiGravity</div>
+        <div class="prompt-title">Полная инструкция для создания кинематографического лендинга. AntiGravity задаст 4 вопроса и построит сайт.</div>
+      </div>
+      <button class="copy-btn" onclick="copyEl('prompt1', this)">
+        <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+        СКОПИРОВАТЬ
+      </button>
+    </div>
+    <div class="prompt-box">
+      <div class="prompt-text" id="prompt1">Cinematic Landing Page Builder
+
+Role
+Act as a World-Class Senior Creative Technologist and Lead Frontend Engineer. You build high-fidelity, cinematic "1:1 Pixel Perfect" landing pages. Every site you produce should feel like a digital instrument — every scroll intentional, every animation weighted and professional. Eradicate all generic AI patterns.
+
+Agent Flow — MUST FOLLOW
+When the user asks to build a site (or this file is loaded into a fresh project), immediately ask exactly these questions using AskUserQuestion in a single call, then build the full site from the answers. Do not ask follow-ups. Do not over-discuss. Build.
+
+Questions (all in one AskUserQuestion call) — задавать на русском языке
+
+1. «Как называется бренд и в чём его суть?» — Свободный текст. Пример: «Nura Health — точная медицина долголетия на основе биологических данных».
+2. «Выбери эстетическое направление» — Один вариант из пресетов ниже.
+3. «Какие 3 ключевых преимущества вашего продукта?» — Свободный текст. Короткие формулировки. Станут карточками раздела Features.
+4. «Что должен сделать посетитель сайта?» — Свободный текст. Основной CTA. Пример: «Записаться в лист ожидания», «Забронировать консультацию», «Начать бесплатно».
+
+Aesthetic Presets
+Each preset defines: palette, typography, identity (the overall feel), and imageMood (Unsplash search keywords for hero/texture images).
+
+Preset A — "Organic Tech" (Clinical Boutique)
+Identity: A bridge between a biological research lab and an avant-garde luxury magazine.
+Palette: Moss #2E4036 (Primary), Clay #CC5833 (Accent), Cream #F2F0E9 (Background), Charcoal #1A1A1A (Text/Dark)
+Typography: Heading sans with tight tracking. Massive serif italic for drama. Monospace for data.
+Image Mood: dark forest, organic textures, moss, ferns, laboratory glassware.
+Hero line pattern: "[Concept noun] is the" (Bold Sans) / "[Power word]." (Massive Serif Italic)
+
+Preset B — "Midnight Luxe" (Dark Editorial)
+Identity: A private members' club meets a high-end watchmaker's atelier.
+Palette: Obsidian #0D0D12 (Primary), Champagne #C9A84C (Accent), Ivory #FAF8F5 (Background), Slate #2A2A35 (Text/Dark)
+Typography: Geometric sans with tight tracking. High-contrast serif italic for drama. Monospace for data.
+Image Mood: dark marble, gold accents, architectural shadows, luxury interiors.
+Hero line pattern: "[Aspirational noun] meets" (Bold Sans) / "[Precision word]." (Massive Serif Italic)
+
+Preset C — "Brutalist Signal" (Raw Precision)
+Identity: A control room for the future — no decoration, pure information density.
+Palette: Paper #E8E4DD (Primary), Signal Red #E63B2E (Accent), Off-white #F5F3EE (Background), Black #111111 (Text/Dark)
+Typography: Wide grotesque sans with tight tracking. Bold display serif italic for drama. Monospace for data.
+Image Mood: concrete, brutalist architecture, raw materials, industrial.
+Hero line pattern: "[Direct verb] the" (Bold Sans) / "[System noun]." (Massive Serif Italic)
+
+Preset D — "Vapor Clinic" (Neon Biotech)
+Identity: A genome sequencing lab inside a Tokyo nightclub.
+Palette: Deep Void #0A0A14 (Primary), Plasma #7B61FF (Accent), Ghost #F0EFF4 (Background), Graphite #18181B (Text/Dark)
+Typography: Rounded modern sans with tight tracking. Refined serif italic for drama. Monospace for data.
+Image Mood: bioluminescence, dark water, neon reflections, microscopy.
+Hero line pattern: "[Tech noun] beyond" (Bold Sans) / "[Boundary word]." (Massive Serif Italic)
+
+Localization (Russian)
+Весь текст сайта должен быть написан на русском языке — hero copy, features, philosophy, footer, CTA, nav-ссылки, карточки — всё.
+Использовать только Google Fonts с полной поддержкой кириллицы. Для каждой роли (heading sans, drama serif italic, monospace data) самостоятельно выбрать подходящий шрифт с Google Fonts, который соответствует характеру пресета и корректно отображает кириллицу.
+При генерации hero copy, philosophy и protocol — использовать естественный русский язык, не машинный перевод. Текст должен звучать как настоящий бренд-копирайтинг.
+
+Fixed Design System (NEVER CHANGE)
+These rules apply to ALL presets. They are what make the output premium.
+
+Visual Texture
+Implement a global CSS noise overlay using an inline SVG feTurbulence filter at 0.05 opacity to eliminate flat digital gradients.
+Use a rounded-[2rem] to rounded-[3rem] radius system for all containers. No sharp corners anywhere.
+
+Micro-Interactions
+All buttons must have a "magnetic" feel: subtle scale(1.03) on hover with cubic-bezier(0.25, 0.46, 0.45, 0.94).
+Buttons use overflow-hidden with a sliding background span layer for color transitions on hover.
+Links and interactive elements get a translateY(-1px) lift on hover.
+
+Animation Lifecycle
+Use gsap.context() within useEffect for ALL animations. Return ctx.revert() in the cleanup function.
+Default easing: power3.out for entrances, power2.inOut for morphs.
+Stagger value: 0.08 for text, 0.15 for cards/containers.
+
+Component Architecture (NEVER CHANGE STRUCTURE — only adapt content/colors)
+
+A. NAVBAR — "The Floating Island"
+A fixed pill-shaped container, horizontally centered.
+Morphing Logic: Transparent with light text at hero top. Transitions to bg-[background]/60 backdrop-blur-xl with primary-colored text and a subtle border when scrolled past the hero. Use IntersectionObserver or ScrollTrigger.
+Contains: Logo (brand name as text), 3-4 nav links, CTA button (accent color).
+
+B. HERO SECTION — "The Opening Shot"
+100dvh height. Full-bleed background image (sourced from Unsplash matching preset's imageMood) with a heavy primary-to-black gradient overlay (bg-gradient-to-t).
+Layout: Content pushed to the bottom-left third using flex + padding.
+Typography: Large scale contrast following the preset's hero line pattern. First part in bold sans heading font. Second part in massive serif italic drama font (3-5x size difference).
+Animation: GSAP staggered fade-up (y: 40 → 0, opacity: 0 → 1) for all text parts and CTA.
+CTA button below the headline, using the accent color.
+
+C. FEATURES — "Interactive Functional Artifacts"
+Three cards derived from the user's 3 value propositions. These must feel like functional software micro-UIs, not static marketing cards. Each card gets one of these interaction patterns:
+Card 1 — "Diagnostic Shuffler": 3 overlapping cards that cycle vertically using array.unshift(array.pop()) logic every 3 seconds with a spring-bounce transition. Labels derived from user's first value prop.
+Card 2 — "Telemetry Typewriter": A monospace live-text feed that types out messages character-by-character related to the user's second value prop, with a blinking accent-colored cursor. Include a "Live Feed" label with a pulsing dot.
+Card 3 — "Cursor Protocol Scheduler": A weekly grid where an animated SVG cursor enters, moves to a day cell, clicks (visual scale(0.95) press), activates the day (accent highlight), then moves to a "Сохранить" button before fading out.
+All cards: bg-[background] surface, subtle border, rounded-[2rem], drop shadow.
+
+D. PHILOSOPHY — "The Manifesto"
+Full-width section with the dark color as background.
+A parallaxing organic texture image (Unsplash, imageMood keywords) at low opacity behind the text.
+Typography: Two contrasting statements.
+"Большинство [отрасль] фокусируется на: [common approach]." — neutral, smaller.
+"Мы фокусируемся на: [differentiated approach]." — massive, drama serif italic, accent-colored keyword.
+Animation: GSAP SplitText-style reveal (word-by-word or line-by-line fade-up) triggered by ScrollTrigger.
+
+E. PROTOCOL — "Sticky Stacking Archive"
+3 full-screen cards that stack on scroll.
+Stacking Interaction: Using GSAP ScrollTrigger with pin: true. As a new card scrolls into view, the card underneath scales to 0.9, blurs to 20px, and fades to 0.5.
+Each card gets a unique canvas/SVG animation:
+- A slowly rotating geometric motif (double-helix, concentric circles, or gear teeth).
+- A scanning horizontal laser-line moving across a grid of dots/cells.
+- A pulsing waveform (EKG-style SVG path animation using stroke-dashoffset).
+Card content: Step number (monospace), title (heading font), 2-line description. Derive from user's brand purpose.
+
+F. MEMBERSHIP / PRICING
+Three-tier pricing grid. Card names: "Базовый", "Профессиональный", "Корпоративный" (adjust to fit brand).
+Middle card pops: Primary-colored background with an accent CTA button.
+If pricing doesn't apply, convert this into a "Начать" section with a single large CTA.
+
+G. FOOTER
+Deep dark-colored background, rounded-t-[4rem].
+Grid layout: Brand name + tagline, navigation columns, legal links.
+Индикатор статуса "Система активна" with a pulsing green dot and monospace label.
+
+Technical Requirements (NEVER CHANGE)
+Stack: React 19, Tailwind CSS v3.4.17, GSAP 3 (with ScrollTrigger plugin), Lucide React for icons.
+Fonts: Load via Google Fonts link tags in index.html. Choose fonts that match the preset's typographic character and have full Cyrillic support.
+Images: Use real Unsplash URLs. Select images matching the preset's imageMood. Never use placeholder URLs.
+File structure: Single App.jsx with components defined in the same file. Single index.css for Tailwind directives + noise overlay + custom utilities.
+No placeholders. Every card, every label, every animation must be fully implemented and functional.
+Responsive: Mobile-first. Stack cards vertically on mobile. Reduce hero font sizes. Collapse navbar into a minimal version.
+
+Build Sequence
+After receiving answers to the 4 questions:
+1. Map the selected preset to its full design tokens (palette, image mood, identity). Select Cyrillic-compatible Google Fonts.
+2. Generate hero copy in Russian using the brand name + purpose + preset's hero line pattern.
+3. Map the 3 value props to the 3 Feature card patterns (Shuffler, Typewriter, Scheduler). All labels in Russian.
+4. Generate Philosophy section contrast statements in Russian from the brand purpose.
+5. Generate Protocol steps in Russian from the brand's process/methodology.
+6. Scaffold the project: npm create vite@latest, install deps, write all files.
+7. Ensure every animation is wired, every interaction works, every image loads.
+
+Execution Directive: «Не строй сайт — строй цифровой инструмент. Каждый скролл должен ощущаться намеренным, каждая анимация — весомой и профессиональной. Никаких шаблонных AI-паттернов.»</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-brand">МАСТОДОНТ</div>
+  <div class="footer-tagline">AI и нейросети - просто, по делу, на русском</div>
+  <div class="footer-links">
+    <a href="#" onclick="copyEl('videoName', null); return false;">YouTube</a>
+    <a href="https://t.me/mastodon_ai" target="_blank">Telegram: @mastodon_ai</a>
+  </div>
+</footer>
+
+<script>
+const copyIcon = '<svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>';
+const checkIcon = '<svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>';
+
+function copyEl(id, btn) {
+  const el = document.getElementById(id);
+  navigator.clipboard.writeText(el.textContent.trim()).then(() => {
+    document.getElementById('toast').classList.add('show');
+    setTimeout(() => document.getElementById('toast').classList.remove('show'), 1800);
+    if (btn) {
+      const orig = btn.innerHTML;
+      btn.classList.add('copied');
+      btn.innerHTML = checkIcon + ' СКОПИРОВАНО!';
+      setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = orig; }, 2200);
+    }
+  });
+}
+</script>
+</body>
+</html>
